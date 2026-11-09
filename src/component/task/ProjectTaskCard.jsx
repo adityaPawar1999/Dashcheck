@@ -11,6 +11,12 @@ function pendingAge(createdAt, now) {
   return days === 0 ? 'Pending today' : `Pending ${days} day${days === 1 ? '' : 's'}`
 }
 
+function createdTime(createdAt) {
+  if (typeof createdAt === 'number') return createdAt
+  if (createdAt instanceof Date) return createdAt.getTime()
+  return createdAt?.toMillis?.() ?? 0
+}
+
 export default function ProjectTaskCard({ project, userId, colorHue, onRenameProject, onDeleteProject, onError }) {
   const [openMenu, setOpenMenu] = useState(null)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -20,7 +26,9 @@ export default function ProjectTaskCard({ project, userId, colorHue, onRenamePro
   const [now, setNow] = useState(Date.now())
 
   const items = project.items ?? []
-  const sortedItems = [...items].sort((a, b) => Number(Boolean(b.starred)) - Number(Boolean(a.starred)))
+  const sortedItems = [...items].sort((a, b) =>
+    Number(Boolean(b.starred)) - Number(Boolean(a.starred)) || createdTime(b.createdAt) - createdTime(a.createdAt),
+  )
   const completed = items.filter(item => item.done).length
   const progress = items.length ? Math.round(completed / items.length * 100) : 0
 
@@ -91,8 +99,9 @@ export default function ProjectTaskCard({ project, userId, colorHue, onRenamePro
   const projectMenuId = `project-${project.id}`
 
   return <article className="project-card" style={{ '--card-hue': colorHue }}>
+    <div className="project-card-banner">
     <div className="project-card-head">
-      <div className="project-card-icon">▱</div>
+      <h2 className="project-card-name" title={project.name}>{project.name}</h2>
       <div className="project-card-actions">
         <button className="card-add-task" onClick={openAddItem}><span>+</span> Add task</button>
         <div className="menu-wrap">
@@ -104,9 +113,9 @@ export default function ProjectTaskCard({ project, userId, colorHue, onRenamePro
         </div>
       </div>
     </div>
-    <h2 title={project.name}>{project.name}</h2>
     <div className="project-card-progress"><span>{completed}/{items.length} complete</span><b>{progress}%</b></div>
     <div className="progress-track"><div className="progress-fill" style={{ width: `${progress}%` }} /></div>
+    </div>
     <div className="project-card-tasks">
       {sortedItems.map(item => {
         const taskMenuId = `task-${project.id}-${item.id}`

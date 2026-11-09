@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
 
@@ -16,3 +16,73 @@
 .star-toggle[aria-pressed=true]{background:var(--card-soft);color:var(--card-accent)}.star-toggle[aria-pressed=true]:hover{background:color-mix(in srgb,var(--card-accent) 16%,white)}
 
 :root{font-family:'DM Sans',sans-serif;color:#202b38;background:#f6f8fb;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;font-weight:400}*{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}.brand{display:flex;align-items:center;gap:10px;color:#192536;text-decoration:none;font:800 18px Manrope,sans-serif;letter-spacing:-.7px;padding:0 10px}.brand-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#287a69;color:white;font:800 16px Manrope;letter-spacing:-1px}.add-project:hover{background:#edf5f3;color:#246e5e}.avatar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#e8f2ef;color:#2c7968;font-weight:700;font-size:13px}.sidebar-bottom strong,.sidebar-bottom small{display:block}.sidebar-bottom strong{font-size:12px;font-weight:600}.sidebar-bottom small{margin-top:3px;color:#9aa5ad;font-size:10px}.main-content{min-height:100vh;display:flex;flex-direction:column}.topbar{height:64px;border-bottom:1px solid #e9edf1;display:flex;align-items:center;justify-content:space-between;padding:0 max(calc((100% - 790px)/2),42px);background:rgba(255,255,255,.6)}.live-status{font-size:11px;color:#75848e;display:flex;align-items:center;gap:7px}.live-status i{width:6px;height:6px;background:#43af86;border-radius:50%}.page-eyebrow{color:#458270;letter-spacing:1.7px;font-size:9px;font-weight:700}.delete-project:hover{color:#b85151;border-color:#eed2d2}.progress-track{height:5px;background:#eef2f3;border-radius:5px;overflow:hidden}.progress-fill{height:100%;background:#4e9a84;border-radius:5px;transition:width .25s ease}.primary-button{min-height:36px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #2c7967;border-radius:7px;background:#317b69;color:#fff;padding:0 13px;font-size:11px;font-weight:600;box-shadow:0 2px 4px #2c79671b;transition:background .15s ease,transform .15s ease}.primary-button:hover{background:#246957;transform:translateY(-1px)}.primary-button>span{font-size:16px;font-weight:400;line-height:1}.task-card{display:flex;align-items:flex-start;gap:14px;padding:15px 14px 14px;background:#fff;border:1px solid #e8edf0;border-radius:9px;box-shadow:0 2px 8px #27374604}.checkbox{width:18px;height:18px;border:1.5px solid #c5d0d3;background:#fff;border-radius:5px;color:white;display:grid;place-items:center;flex:none;padding:0;margin-top:1px;font-size:12px}.checkbox:hover{border-color:#549582}.is-done .checkbox{background:#458b77;border-color:#458b77}.task-copy{min-width:0;flex:1}.task-line{display:flex;align-items:center;gap:9px}.task-line h3{margin:0;color:#35434f;font-size:12px;font-weight:600;line-height:1.6}.is-done .task-line h3{color:#939fa5;text-decoration:line-through}.task-copy p{margin:6px 0 0 27px;color:#89969f;font-size:11px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}.task-card:hover .task-delete{opacity:1}.task-delete:hover{color:#b85151}.add-another:hover{border-color:#75aa9a;color:#347a69;background:#fbfdfc}.empty-illustration,.welcome-icon{display:grid;place-items:center;border-radius:14px;background:#edf6f2;color:#408572}.empty-illustration{width:42px;height:42px;font-size:19px}.footer{margin:0 auto 20px;color:#aab4b9;font-size:10px;letter-spacing:.2px}.footer span{color:#62a18c;margin-left:4px}.welcome-icon{width:52px;height:52px;margin:0 auto 24px;border-radius:17px;font-size:22px}.error-banner{width:min(790px,calc(100% - 72px));margin:18px auto 0;border:1px solid #f0d6cc;border-radius:8px;background:#fff9f6;padding:11px 13px;display:flex;align-items:center;gap:10px;color:#9e5d49;font-size:11px}.error-banner span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.error-banner button{border:0;background:none;color:#9e5d49;font-size:10px}.loading-state{margin:auto;display:flex;align-items:center;gap:10px;color:#84929b;font-size:13px}.spinner{height:16px;width:16px;border:2px solid #dce9e5;border-top-color:#438a77;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.modal-backdrop{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:20px;background:#17252c69;backdrop-filter:blur(3px)}.modal{position:relative;width:min(420px,100%);padding:27px 29px 25px;background:#fff;border:1px solid #e9eef0;border-radius:13px;box-shadow:0 22px 70px #12232d38;animation:modal-in .16s ease-out}@keyframes modal-in{from{transform:translateY(7px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-close{position:absolute;right:15px;top:12px;border:0;background:none;color:#97a3a8;font-size:24px;line-height:1}.modal-icon{width:34px;height:34px;display:grid;place-items:center;margin-bottom:19px;border-radius:10px;background:#edf6f2;color:#438572;font-size:16px}.modal h2{margin:6px 0 5px;font:700 19px Manrope;letter-spacing:-.4px;color:#283744}.modal>p{margin:0 0 19px;font-size:11px;color:#89969f;line-height:1.6}.modal label{display:block;margin:15px 0 6px;font-size:10px;font-weight:600;color:#52616c}.modal input,.modal textarea{display:block;width:100%;border:1px solid #dfe6e8;border-radius:7px;padding:10px 11px;outline:none;font-size:12px;color:#31404c;resize:vertical}.modal input:focus,.modal textarea:focus{border-color:#73a896;box-shadow:0 0 0 3px #edf6f2}.modal input::placeholder,.modal textarea::placeholder{color:#b3bdc2}.optional{float:right;font-size:8px;letter-spacing:.7px;color:#9ca8ad}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:23px}.secondary-button{min-height:36px;border:1px solid #e0e6e8;border-radius:7px;background:white;color:#64737c;padding:0 13px;font-size:11px}.secondary-button:hover{background:#f7f9fa}@media(min-width:1500px){.topbar{height:68px}}@media(max-width:700px){.brand{padding:0;font-size:16px}.brand-mark{width:27px;height:27px}.main-content{min-height:calc(100vh - 100px)}.topbar{height:47px;padding:0 20px}.task-card{gap:10px;padding:13px 11px}.task-copy p{margin-left:0}.footer{margin-bottom:14px}.error-banner{width:calc(100% - 38px);align-items:flex-start;flex-wrap:wrap}.error-banner b{width:100%}.error-banner span{white-space:normal}.modal{padding:24px 20px 20px}}
+
+/* Shared workspace navbar */
+.board-topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #e8edef;background:#ffffffed;backdrop-filter:blur(14px)}
+.board-topbar .brand{flex:none;gap:9px;padding:0;font-size:17px}
+.board-topbar .brand-mark{width:32px;height:32px;border-radius:10px;box-shadow:0 3px 8px #287a6924}
+.account-actions{min-width:0;gap:18px}
+.account-identity{min-width:0;display:flex;align-items:center;gap:9px}
+.account-avatar{display:grid;place-items:center;flex:none;width:31px;height:31px;border:1px solid #dcebe5;border-radius:50%;background:#edf6f2;color:#347a69;font-size:12px;font-weight:700}
+.user-email{display:block;max-width:min(240px,28vw);font-size:11px;font-weight:500}
+.signout-button{min-height:33px;padding:0 12px;border:1px solid #e0e7e8;border-radius:7px;background:#fff;color:#62717b;font-size:10px;font-weight:600;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.signout-button:hover{border-color:#cbdad6;background:#f7faf9;color:#2f7565}
+.signout-button:focus-visible,.board-topbar a:focus-visible{outline:2px solid #57927f;outline-offset:3px}
+@media(max-width:700px){.board-topbar{gap:12px}.account-actions{gap:10px}.user-email{max-width:150px}}
+@media(max-width:520px){.board-topbar{gap:8px}.account-actions{gap:8px}.account-identity{gap:6px}.account-avatar{width:28px;height:28px}.user-email{max-width:96px;font-size:9px}.account-actions .signout-button{min-height:30px;padding:0 8px;font-size:9px}}
+@media(max-width:370px){.board-topbar{padding-right:9px;padding-left:9px}.board-topbar .brand{gap:6px;font-size:14px}.account-actions{gap:6px}.user-email{max-width:76px}.account-actions .signout-button{padding:0 6px}}
+
+/* Project task card header */
+.project-card-head{min-width:0;gap:9px;align-items:flex-start}
+.project-card-title{min-width:0;flex:1;display:flex;align-items:center;gap:9px}
+.project-card-title h2{min-width:0;margin:0;color:#273642;font:700 14px/1.35 Manrope;letter-spacing:-.2px;overflow-wrap:anywhere}
+.project-card-icon{flex:none;width:32px;height:32px}
+.project-card-actions{flex:none;gap:5px}
+.card-add-task{min-height:30px;white-space:nowrap}
+.project-card-head .menu-wrap{flex:none}
+@media(max-width:520px){.project-card-head{gap:6px}.project-card-title{gap:7px}.project-card-title h2{font-size:13px}.project-card-icon{width:29px;height:29px}.project-card-actions{gap:2px}.card-add-task{min-height:28px;padding:0 7px;font-size:8px}}
+.project-card-head{align-items:center}
+.project-card-name{margin:11px 0 12px;color:#24333f;font:750 17px/1.3 Manrope,sans-serif;letter-spacing:-.45px;overflow-wrap:anywhere}
+@media(max-width:520px){.project-card-name{margin:10px 0 11px;font-size:16px;line-height:1.3}}
+.project-card-actions{margin-left:auto}
+.project-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.project-card-name{min-width:0;flex:1;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#24333f;font:700 14px/1.35 Manrope,sans-serif;letter-spacing:-.25px}
+.project-card-actions{flex:none;margin-left:0;gap:4px}
+.card-add-task{min-height:29px;padding:0 8px}
+.project-card-head .menu-wrap{flex:none}
+@media(max-width:520px){.project-card-head{gap:5px}.project-card-name{font-size:12px;letter-spacing:-.15px}.project-card-actions{gap:2px}.card-add-task{min-height:27px;padding:0 6px;font-size:8px}}
+.project-card-head{padding:5px 7px}
+@media(max-width:520px){.project-card-head{padding:5px 6px}}
+.project-card{background:linear-gradient(180deg,var(--card-soft) 0,var(--card-soft) 112px,#fff 112px)}
+.project-card-head{flex-wrap:nowrap}
+.project-card-name{align-self:center}
+
+/* Project card layout: colored progress header and clear task rows */
+.project-card{padding:15px 14px 13px;background:#fff}
+.project-card-banner{margin:-15px -14px 0;padding:14px 14px 12px;border-radius:10px 10px 0 0;background:var(--card-soft)}
+.project-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;padding:0;flex-wrap:nowrap}
+.project-card-name{min-width:0;flex:1;margin:0;color:#253541;font:700 14px/1.35 Manrope,sans-serif;letter-spacing:-.25px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.project-card-actions{display:flex;align-items:center;flex:none;gap:4px;margin:0}
+.card-add-task{min-height:30px;padding:0 9px;border:1px solid color-mix(in srgb,var(--card-accent) 25%,white);border-radius:7px;background:#ffffffd9;color:var(--card-accent);font-size:9px;font-weight:650;white-space:nowrap}
+.card-add-task:hover{background:#fff;border-color:color-mix(in srgb,var(--card-accent) 45%,white)}
+.project-card-actions .more-button{width:28px;height:28px;border:1px solid transparent}
+.project-card-progress{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:13px 0 6px;color:color-mix(in srgb,var(--card-accent) 68%,#485660);font-size:10px}
+.project-card-progress b{color:var(--card-accent);font-size:11px;font-weight:700}
+.project-card .progress-track{height:5px;background:color-mix(in srgb,var(--card-accent) 14%,white)}
+.project-card .progress-fill{background:var(--card-accent)}
+.project-card-tasks{display:grid;gap:8px;margin-top:12px}
+.project-card .task-card{min-width:0;align-items:flex-start;gap:8px;padding:10px 9px;border:1px solid #e8edf0;border-radius:8px;background:#fff;box-shadow:0 1px 4px #27374608}
+.project-card .task-card.is-starred{border-color:color-mix(in srgb,var(--card-accent) 28%,#e5ebed);background:var(--card-soft)}
+.project-card .checkbox{width:16px;height:16px;margin-top:1px}
+.project-card .task-copy{min-width:0;overflow-wrap:anywhere}
+.project-card .task-line h3{color:#34434e;font-size:11px;line-height:1.45;overflow-wrap:anywhere}
+.project-card .is-done .task-line h3{color:#8d999f}
+.project-card .task-copy p{margin:5px 0 0;color:#7f8c94;font-size:10px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.project-card .task-age{margin-top:4px;font-size:9px}
+.project-card .star-toggle{margin:0 0 0 auto}
+.project-card .task-actions{margin-left:0}
+.project-card .task-more-button{width:24px;height:24px}
+.project-card .no-tasks{margin:12px 2px 4px;padding:12px;border:1px dashed #dce5e5;border-radius:7px;text-align:center;color:#8e9aa0;font-size:10px}
+@media(max-width:520px){.project-card{padding:13px 12px 12px}.project-card-banner{margin:-13px -12px 0;padding:12px 12px 11px}.project-card-name{font-size:12px}.project-card-actions{gap:2px}.card-add-task{min-height:28px;padding:0 7px;font-size:8px}.project-card-progress{margin-top:11px;font-size:9px}.project-card-tasks{gap:7px;margin-top:10px}.project-card .task-card{gap:7px;padding:9px 8px}}
+.project-card .task-card{border-color:transparent;box-shadow:none}
+.project-card .task-card.is-starred{border-color:transparent}
