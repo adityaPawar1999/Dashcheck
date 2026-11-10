@@ -39,7 +39,7 @@ export default function LoginScreen() {
       <input id="email" type="email" autoComplete="email" required placeholder="you@example.com" value={email} onChange={event => setEmail(event.target.value)} />
       <label htmlFor="password">Password</label>
       <input id="password" type="password" minLength="6" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} required placeholder="At least 6 characters" value={password} onChange={event => setPassword(event.target.value)} />
-      <button className="primary-button auth-submit" type="submit">{mode === 'signup' ? 'Create account' : 'Sign in'} <span>â†’</span></button>
+      <button className="primary-button auth-submit" type="submit">{mode === 'signup' ? 'Create account' : 'Sign in'} <span>&#8594;</span></button>
       <div className="auth-divider"><span>or</span></div>
       <button className="google-auth-button" type="button" onClick={signInWithGoogle}><span className="google-mark">G</span> Continue with Google</button>
     </form>
