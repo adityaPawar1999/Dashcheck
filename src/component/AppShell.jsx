@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
-import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import ProjectTaskCard from './task/ProjectTaskCard.jsx'
 import TaskProgress from './task/TaskProgress.jsx'
@@ -56,6 +56,12 @@ function App() {
   const [activeTab, setActiveTab] = useState('projects')
 
   useEffect(() => onAuthStateChanged(auth, currentUser => { setUser(currentUser); setAuthLoading(false) }), [])
+
+  useEffect(() => {
+    if (!user?.email) return
+    setDoc(doc(db, 'users', user.uid), { email: user.email }, { merge: true })
+      .catch(err => setError(err.message))
+  }, [user])
 
   useEffect(() => {
     if (!user) { setProjects([]); setLoading(false); return }
