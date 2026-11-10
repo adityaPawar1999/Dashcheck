@@ -43,6 +43,5 @@ export default function LoginScreen() {
       <div className="auth-divider"><span>or</span></div>
       <button className="google-auth-button" type="button" onClick={signInWithGoogle}><span className="google-mark">G</span> Continue with Google</button>
     </form>
-    <div className="auth-note">Your projects are private to your account and sync with Firebase.</div>
   </main>
 }

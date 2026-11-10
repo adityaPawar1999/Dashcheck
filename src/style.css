@@ -102,3 +102,5 @@
 .board-page>.footer{background:#00BCC8;border-top-color:#00A6B0;color:#101820}.footer-contact a{color:#101820}.footer-contact a:hover{color:#000;text-decoration:underline}
 .board-page>.footer{background:#F1F2F2;border-top-color:#E1E4E5;color:#303638}.footer-contact a{color:#007E87}.footer-contact a:hover{color:#005A61}
 .project-strip{scrollbar-width:none;-ms-overflow-style:none}.project-strip::-webkit-scrollbar{display:none;width:0;height:0}
+.auth-screen{position:relative;isolation:isolate;overflow:hidden;background:transparent}.auth-screen::before,.auth-screen::after{position:absolute;inset:-14px;content:"";pointer-events:none}.auth-screen::before{z-index:-2;background:url("/auth-background.png") center/cover no-repeat;filter:blur(6px);transform:scale(1.04)}.auth-screen::after{z-index:-1;background:rgba(246,248,251,.45)}.auth-screen>.auth-card,.auth-screen>.auth-note{position:relative;z-index:0}.auth-screen>.auth-card{background:rgba(255,255,255,.91);backdrop-filter:blur(12px)}
+@media(max-width:700px){.user-email{display:none}.project-strip{grid-auto-columns:min(319px,92.4vw)}}@media(max-width:370px){.project-strip{grid-auto-columns:min(308px,94.6vw)}}
