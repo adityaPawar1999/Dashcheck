@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
-import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, writeBatch } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import ProjectTaskCard from './task/ProjectTaskCard.jsx'
 import TaskProgress from './task/TaskProgress.jsx'
@@ -69,6 +69,8 @@ function App() {
     const projectsRef = collection(db, 'users', user.uid, 'projects')
     return onSnapshot(query(projectsRef, orderBy('createdAt', 'asc')), snapshot => {
     const next = snapshot.docs.map(entry => ({ id: entry.id, ...entry.data() }))
+    const originalOrder = new Map(next.map((project, index) => [project.id, index]))
+    next.sort((a, b) => (Number.isFinite(a.position) ? a.position : originalOrder.get(a.id)) - (Number.isFinite(b.position) ? b.position : originalOrder.get(b.id)))
     setProjects(next)
     setLoading(false)
     setError('')
@@ -108,7 +110,7 @@ function App() {
       if (editingProjectId) {
         await updateDoc(doc(db, 'users', user.uid, 'projects', editingProjectId), { name, color: projectColor })
       } else {
-        await addDoc(userProjects(), { name, items: [], color: projectColor, createdAt: serverTimestamp() })
+        await addDoc(userProjects(), { name, items: [], color: projectColor, position: projects.length, createdAt: serverTimestamp() })
       }
       setProjectName('')
       setEditingProjectId(null)
@@ -124,6 +126,27 @@ function App() {
 
   if (authLoading) return <div className="loading-state"><span className="spinner" /> Connecting to Firebase…</div>
 
+  async function saveProjectOrder(orderedProjects) {
+    const batch = writeBatch(db)
+    orderedProjects.forEach((project, index) => {
+      batch.update(doc(db, 'users', user.uid, 'projects', project.id), { position: index })
+    })
+    try {
+      await batch.commit()
+      setProjects(orderedProjects.map((project, position) => ({ ...project, position })))
+    } catch (err) { setError(err.message) }
+  }
+
+  function moveProject(projectId, direction) {
+    const from = projects.findIndex(project => project.id === projectId)
+    const to = from + direction
+    if (from < 0 || to < 0 || to >= projects.length) return
+    const reordered = [...projects]
+    const [project] = reordered.splice(from, 1)
+    reordered.splice(to, 0, project)
+    saveProjectOrder(reordered)
+  }
+
   if (!user) return <LoginScreen />
 
   return <div className="app-shell">
@@ -134,7 +157,18 @@ function App() {
         {activeTab === 'notes' ? <NotesPad userId={user.uid} onError={setError} /> : <>
         <div className="board-heading"><div><div className="page-eyebrow">YOUR WORKSPACE</div><h1>Projects</h1><p>All your checklists, together in one place.</p></div><button className="primary-button" onClick={openCreateProject}><span>{icon.plus}</span> Create project</button></div>
         {loading ? <div className="loading-state"><span className="spinner" /> Loading your projects…</div> : projects.length ? <><TaskProgress projects={projects} projectColors={projectColors} /><div className="project-strip" aria-label="Your projects">
-          {projects.map(project => <ProjectTaskCard key={project.id} project={project} userId={user.uid} colorHue={projectColors.get(project.id)} onRenameProject={openRenameProject} onDeleteProject={removeProject} onError={setError} />)}
+          {projects.map((project, index) => <ProjectTaskCard
+            key={project.id}
+            project={project}
+            userId={user.uid}
+            colorHue={projectColors.get(project.id)}
+            projectIndex={index}
+            projectCount={projects.length}
+            onMoveProject={direction => moveProject(project.id, direction)}
+            onRenameProject={openRenameProject}
+            onDeleteProject={removeProject}
+            onError={setError}
+          />)}
         </div></> : <div className="board-empty"><div className="welcome-icon"><span>✓</span></div><h2>Your first project is one click away</h2><p>Create a project to start adding tasks and check them off as you go.</p><button className="primary-button" onClick={() => setProjectDialog(true)}><span>{icon.plus}</span> Create your first project</button></div>}
         </>}
       </section>

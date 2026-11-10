@@ -17,7 +17,7 @@ function createdTime(createdAt) {
   return createdAt?.toMillis?.() ?? 0
 }
 
-export default function ProjectTaskCard({ project, userId, colorHue, onRenameProject, onDeleteProject, onError }) {
+export default function ProjectTaskCard({ project, userId, colorHue, projectIndex, projectCount, onMoveProject, onRenameProject, onDeleteProject, onError }) {
   const [openMenu, setOpenMenu] = useState(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editingItemId, setEditingItemId] = useState(null)
@@ -107,6 +107,8 @@ export default function ProjectTaskCard({ project, userId, colorHue, onRenamePro
         <div className="menu-wrap">
           <button className="more-button" aria-label={`More options for ${project.name}`} aria-haspopup="menu" aria-expanded={openMenu === projectMenuId} onClick={() => setOpenMenu(openMenu === projectMenuId ? null : projectMenuId)}>⋮</button>
           {openMenu === projectMenuId && <div className="action-menu" role="menu">
+            <button role="menuitem" disabled={projectIndex === 0} onClick={() => { setOpenMenu(null); onMoveProject(-1) }}>Move left</button>
+            <button role="menuitem" disabled={projectIndex === projectCount - 1} onClick={() => { setOpenMenu(null); onMoveProject(1) }}>Move right</button>
             <button role="menuitem" onClick={() => { setOpenMenu(null); onRenameProject(project) }}>Rename project</button>
             <button className="menu-danger" role="menuitem" onClick={() => { setOpenMenu(null); onDeleteProject(project) }}>Delete project</button>
           </div>}
