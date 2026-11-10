@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 96" role="img" aria-labelledby="title desc">
+  <title id="title">SysSky Tech</title>
+  <desc id="desc">SysSky Tech wordmark with a cyan cloud and lime network icon.</desc>
+  <defs>
+    <linearGradient id="sky" x1="12" y1="12" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D2DF"/>
+      <stop offset="1" stop-color="#00A7B4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 8)">
+    <rect x="2" y="2" width="76" height="76" rx="22" fill="#101820"/>
+    <path d="M17 48.5h42a11 11 0 0 0 1-22 18 18 0 0 0-34.2-3.4A13 13 0 0 0 17 48.5Z" fill="none" stroke="url(#sky)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M40 42v-9m0 0-8-7m8 7 8-7" fill="none" stroke="#D0FF00" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="40" cy="46" r="4" fill="#D0FF00"/>
+    <circle cx="30" cy="24" r="3.3" fill="#D0FF00"/>
+    <circle cx="50" cy="24" r="3.3" fill="#D0FF00"/>
+  </g>
+  <text x="104" y="52" fill="#101820" font-family="Inter, Manrope, Arial, sans-serif" font-size="37" font-weight="750" letter-spacing="-1.4">SysSky</text>
+  <text x="105" y="77" fill="#008F9A" font-family="Inter, Manrope, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="4.1">TECH</text>
+  <path d="M183 67h54" stroke="#D0FF00" stroke-width="3" stroke-linecap="round"/>
+</svg>
