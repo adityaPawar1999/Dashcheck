@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { doc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../firebase'
+import LoadingState from '../LoadingState.jsx'
 
 export default function NotesPad({ userId, onError }) {
   const [content, setContent] = useState('')
@@ -51,7 +52,7 @@ export default function NotesPad({ userId, onError }) {
   return <div className="notes-page">
     <div className="board-heading notes-heading">
       <div><div className="page-eyebrow">YOUR WORKSPACE</div><h1>Notes</h1><p>A private place for details you want to keep close.</p></div>
-      <span className={`notes-save-status ${status === 'Could not save' ? 'has-error' : ''}`} aria-live="polite">{status}</span>
+      {loaded ? <span className={`notes-save-status ${status === 'Could not save' ? 'has-error' : ''}`} aria-live="polite">{status}</span> : <LoadingState message="Loading notes…" inline />}
     </div>
     <section className="notes-paper" aria-label="Your notes">
       <div className="notes-paper-heading"><span className="notes-paper-icon" aria-hidden="true">✎</span><div><h2>Quick notes</h2><p>Your notes save automatically.</p></div></div>

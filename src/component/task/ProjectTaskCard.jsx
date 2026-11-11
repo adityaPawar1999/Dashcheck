@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase'
 
@@ -17,13 +17,14 @@ function createdTime(createdAt) {
   return createdAt?.toMillis?.() ?? 0
 }
 
-export default function ProjectTaskCard({ project, userId, colorHue, projectIndex, projectCount, onMoveProject, onRenameProject, onDeleteProject, onError }) {
+export default function ProjectTaskCard({ project, userId, colorHue, projectIndex, projectCount, onMoveProject, onRenameProject, onDeleteProject, onError, highlightTasks }) {
   const [openMenu, setOpenMenu] = useState(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editingItemId, setEditingItemId] = useState(null)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [now, setNow] = useState(Date.now())
+  const projectCardRef = useRef(null)
 
   const items = project.items ?? []
   const sortedItems = [...items].sort((a, b) =>
@@ -36,6 +37,10 @@ export default function ProjectTaskCard({ project, userId, colorHue, projectInde
     const timer = window.setInterval(() => setNow(Date.now()), 60_000)
     return () => window.clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    if (highlightTasks) projectCardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [highlightTasks])
 
   useEffect(() => {
     if (!openMenu) return
@@ -98,7 +103,7 @@ export default function ProjectTaskCard({ project, userId, colorHue, projectInde
 
   const projectMenuId = `project-${project.id}`
 
-  return <article className="project-card" style={{ '--card-hue': colorHue }}>
+  return <article ref={projectCardRef} className={`project-card${highlightTasks ? ' is-highlighted' : ''}`} style={{ '--card-hue': colorHue }}>
     <div className="project-card-banner">
     <div className="project-card-head">
       <h2 className="project-card-name" title={project.name}>{project.name}</h2>

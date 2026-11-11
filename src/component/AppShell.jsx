@@ -7,6 +7,7 @@ import TaskProgress from './task/TaskProgress.jsx'
 import LoginScreen from './auth/LoginScreen.jsx'
 import TopNavbar from './navbar/TopNavbar.jsx'
 import NotesPad from './notes/NotesPad.jsx'
+import LoadingState from './LoadingState.jsx'
 
 const icon = { plus: '+' }
 const projectColorOptions = [
@@ -54,6 +55,7 @@ function App() {
   const [projectName, setProjectName] = useState('')
   const [projectColor, setProjectColor] = useState(projectColorOptions[0].hue)
   const [activeTab, setActiveTab] = useState('projects')
+  const [highlightedProjectId, setHighlightedProjectId] = useState(null)
 
   useEffect(() => onAuthStateChanged(auth, currentUser => { setUser(currentUser); setAuthLoading(false) }), [])
 
@@ -124,7 +126,7 @@ function App() {
     catch (err) { setError(err.message) }
   }
 
-  if (authLoading) return <div className="loading-state"><span className="spinner" /> Connecting to Firebase…</div>
+  if (authLoading) return <LoadingState message="Connecting to Firebase…" />
 
   async function saveProjectOrder(orderedProjects) {
     const batch = writeBatch(db)
@@ -155,8 +157,7 @@ function App() {
       {error && <div className="error-banner"><b>Firebase needs attention</b><span>{error}</span><button onClick={() => setError('')}>Dismiss</button></div>}
       <section className="board-content">
         {activeTab === 'notes' ? <NotesPad userId={user.uid} onError={setError} /> : <>
-        <div className="board-heading"><div><div className="page-eyebrow">YOUR WORKSPACE</div><h1>Projects</h1><p>All your checklists, together in one place.</p></div><button className="primary-button" onClick={openCreateProject}><span>{icon.plus}</span> Create project</button></div>
-        {loading ? <div className="loading-state"><span className="spinner" /> Loading your projects…</div> : projects.length ? <><TaskProgress projects={projects} projectColors={projectColors} /><div className="project-strip" aria-label="Your projects">
+        {loading ? <LoadingState message="Loading your projects…" inline /> : projects.length ? <><TaskProgress projects={projects} projectColors={projectColors} onOpenProjectTasks={setHighlightedProjectId} onCreateProject={openCreateProject} /><div className="project-strip" aria-label="Your projects">
           {projects.map((project, index) => <ProjectTaskCard
             key={project.id}
             project={project}
@@ -168,6 +169,7 @@ function App() {
             onRenameProject={openRenameProject}
             onDeleteProject={removeProject}
             onError={setError}
+            highlightTasks={highlightedProjectId === project.id}
           />)}
         </div></> : <div className="board-empty"><div className="welcome-icon"><span>✓</span></div><h2>Your first project is one click away</h2><p>Create a project to start adding tasks and check them off as you go.</p><button className="primary-button" onClick={() => setProjectDialog(true)}><span>{icon.plus}</span> Create your first project</button></div>}
         </>}
